@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fcc80e" />
+    <meta name="description" content="TOCFL Band A 口說自主練習：限時錄音、回聽、自我檢查與再次作答。" />
+    <title>說說看｜TOCFL Band A 口說練習室</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="One-Forty｜回到首頁"><img src="./one-forty-logo.png" alt="One-Forty"></a>
+      <button id="homeButton" class="quiet-button hidden" type="button">回首頁</button>
+      <div class="header-tools"><label class="language-label" for="languageSelect">語言</label><select id="languageSelect" aria-label="介面語言"><option value="zh">中文</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="th">ไทย</option><option value="en">English</option></select><div id="accountArea" class="account-area hidden"><span id="accountName"></span><button id="logoutButton" class="quiet-button" type="button">登出</button></div></div>
+    </header>
+
+    <main id="app" tabindex="-1"></main>
+
+    <template id="loginTemplate">
+      <section class="login-page">
+        <div class="login-copy"><p class="eyebrow">TOCFL BAND A</p><h1>歡迎來到<br><span>口說練習室</span></h1><p>請使用報名考試時填寫的資料登入。</p><div class="privacy-note"><span>●</span> 錄音只留在這台裝置，不會上傳。</div></div>
+        <form id="loginForm" class="login-card"><h2>考生登入</h2><label for="passportInput">護照號碼</label><input id="passportInput" type="password" autocomplete="username" required placeholder="••••••••" /><label for="birthInput">出生年月日</label><input id="birthInput" type="password" autocomplete="current-password" inputmode="numeric" maxlength="8" required placeholder="••••••••" /><p class="field-help">請輸入護照上的西元生日，格式為 YYYYMMDD。</p><button id="loginButton" class="primary-button large" type="submit">登入</button><p id="loginError" class="error-message hidden" role="alert"></p></form>
+      </section>
+    </template>
+
+    <template id="homeTemplate">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">TOCFL BAND A</p>
+          <h1>說說看！<br><span>口說練習室</span></h1>
+          <p class="hero-lead">不用怕說錯。先說一次、聽聽自己，再說得更完整。</p>
+          <div class="privacy-note"><span>●</span> 錄音只留在這台裝置，不會自動上傳。</div>
+        </div>
+        <div class="steps-card" aria-label="練習三步驟">
+          <div><strong>1</strong><span>看題目<br>整理重點</span></div>
+          <div><strong>2</strong><span>限時錄音<br>聽聽自己</span></div>
+          <div><strong>3</strong><span>檢查內容<br>再說一次</span></div>
+        </div>
+      </section>
+
+      <section class="practice-section">
+        <div class="section-heading">
+          <div><p class="eyebrow">開始練習</p><h2>今天想練哪一種？</h2></div>
+          <p id="progressSummary" class="progress-summary"></p>
+        </div>
+        <div id="statsStrip" class="stats-strip"></div>
+        <div class="mode-grid">
+          <button class="mode-card blue" data-mode="question" type="button">
+            <span class="mode-number">01</span><span class="mode-icon">問</span>
+            <strong>回答問題</strong><small>30 秒｜說答案，也說原因</small>
+          </button>
+          <button class="mode-card green" data-mode="experience" type="button">
+            <span class="mode-number">02</span><span class="mode-icon">記</span>
+            <strong>經驗描述</strong><small>準備 50 秒｜回答 1 分鐘</small>
+          </button>
+          <button class="mode-card orange" data-mode="sequence" type="button">
+            <span class="mode-number">03</span><span class="mode-icon">圖</span>
+            <strong>看圖說故事</strong><small>準備 50 秒｜回答 1 分鐘</small>
+          </button>
+          <button class="mode-card navy" data-mode="mock" type="button">
+            <span class="mode-number">04</span><span class="mode-icon">考</span>
+            <strong>完整小模考</strong><small>4 題｜不中斷、不重錄</small>
+          </button>
+        </div>
+      </section>
+    </template>
+
+    <template id="listTemplate">
+      <section class="page-intro">
+        <p class="eyebrow" id="listEyebrow"></p>
+        <h1 id="listTitle"></h1>
+        <p id="listDescription"></p>
+      </section>
+      <section id="questionList" class="question-list"></section>
+    </template>
+
+    <template id="practiceTemplate">
+      <section class="practice-shell">
+        <div class="practice-topline">
+          <span id="typeBadge" class="type-badge"></span>
+          <span id="timingLabel" class="timing-label"></span>
+        </div>
+        <div id="sequenceVisual" class="sequence-visual hidden"></div>
+        <div class="prompt-card">
+          <p class="prompt-label">題目</p>
+          <h1 id="promptText"></h1>
+          <button id="speakPrompt" class="listen-button" type="button">🔊 聽題目</button>
+        </div>
+        <div id="supportPanel" class="support-panel">
+          <div class="support-heading"><h2>需要幫忙嗎？</h2><span>練習模式可以看提示</span></div>
+          <button id="toggleHints" class="outline-button" type="button">顯示回答提示</button>
+          <div id="hints" class="hints hidden"></div>
+          <label class="keywords-label" for="keywords">寫下 3–5 個關鍵詞（不要寫整篇答案）</label>
+          <input id="keywords" maxlength="60" placeholder="例如：朋友、夜市、便宜、開心" />
+        </div>
+        <section id="recorder" class="recorder-card">
+          <div class="timer-wrap"><div id="timer" class="timer">00:30</div><p id="timerStatus">準備好了就開始</p></div>
+          <button id="recordButton" class="record-button" type="button"><span></span><b>開始練習</b></button>
+          <button id="stopButton" class="stop-button hidden" type="button">提前完成</button>
+          <p id="micHelp" class="microcopy">第一次使用時，請允許瀏覽器使用麥克風。</p>
+        </section>
+        <section id="reviewSection" class="review-section hidden">
+          <div class="section-heading compact"><div><p class="eyebrow">回聽與檢查</p><h2>聽聽自己的回答</h2></div><span id="takeBadge" class="take-badge">第一次</span></div>
+          <audio id="audioPlayer" controls></audio>
+          <div id="checklist" class="checklist"></div>
+          <div id="feedback" class="feedback hidden"></div>
+          <div class="action-row">
+            <button id="getFeedback" class="primary-button" type="button">看練習建議</button>
+            <button id="retryButton" class="secondary-button hidden" type="button">根據建議，再說一次</button>
+            <button id="completeButton" class="primary-button hidden" type="button">完成這題，進入下一題</button>
+            <button id="downloadButton" class="quiet-button" type="button">下載錄音</button>
+          </div>
+        </section>
+        <section id="comparison" class="comparison hidden"></section>
+      </section>
+    </template>
+
+    <template id="mockIntroTemplate">
+      <section class="mock-intro">
+        <p class="eyebrow">完整小模考</p>
+        <h1>準備好，連續完成 4 題</h1>
+        <p>題目會依序進行。每題只能錄一次，也不能暫停。完成後可以回聽全部答案。</p>
+        <div class="mock-rules">
+          <div><strong>1 題</strong><span>暖身題<br>不計分</span></div>
+          <div><strong>1 題</strong><span>回答問題<br>30 秒</span></div>
+          <div><strong>1 題</strong><span>經驗描述<br>1 分鐘</span></div>
+          <div><strong>1 題</strong><span>看圖說故事<br>1 分鐘</span></div>
+        </div>
+        <div class="callout"><strong>先確認環境</strong><br>戴上耳機、找安靜的地方，手機靠近嘴巴。過程中請不要離開頁面。</div>
+        <button id="startMock" class="primary-button large" type="button">開始小模考</button>
+      </section>
+    </template>
+
+    <template id="mockResultTemplate">
+      <section class="mock-results">
+        <p class="eyebrow">完成了！</p>
+        <h1>你完成一回小模考</h1>
+        <p>這裡沒有正式分數。請回聽答案，找出下一次最想改善的一件事。</p>
+        <div id="mockRecordings" class="mock-recordings"></div>
+        <div class="reflection-card">
+          <h2>我的下一步</h2>
+          <label><input type="radio" name="reflection"> 回答再切題一點</label>
+          <label><input type="radio" name="reflection"> 多說一個細節或原因</label>
+          <label><input type="radio" name="reflection"> 使用「後來、最後」說清楚順序</label>
+          <label><input type="radio" name="reflection"> 放慢速度、讓聲音更清楚</label>
+        </div>
+        <button id="finishMock" class="primary-button" type="button">完成，回到首頁</button>
+      </section>
+    </template>
+
+    <script src="./config.js"></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
