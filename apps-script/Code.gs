@@ -29,6 +29,7 @@ function doPost(e) {
   try {
     const body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
     const routes = {
+      content: () => content_(),
       login: () => login_(body),
       restore: () => restore_(body.token),
       recordPractice: () => recordPractice_(body.token, body.questionId),
@@ -41,6 +42,78 @@ function doPost(e) {
     console.error(error);
     return json_({ ok: false, error: 'request_failed' });
   }
+}
+
+function content_() {
+  const cache = CacheService.getScriptCache();
+  const cached = cache.get('published_content_v1');
+  if (cached) return JSON.parse(cached);
+  const book = SpreadsheetApp.openById(CONFIG.QUESTION_SHEET_ID);
+  const result = {
+    ok: true,
+    questions: {
+      question: questionRows_(book.getSheetByName('回答問題'), false),
+      experience: questionRows_(book.getSheetByName('經驗描述'), false),
+      sequence: questionRows_(book.getSheetByName('影片描述'), true),
+    },
+    translations: translationRows_(book.getSheetByName('平台介面翻譯表')),
+  };
+  cache.put('published_content_v1', JSON.stringify(result), 300);
+  return result;
+}
+
+function questionRows_(sheet, isSequence) {
+  const values = sheet.getDataRange().getDisplayValues();
+  const header = headerMap_(values[2]);
+  return values.slice(3)
+    .filter(r => r[header['題目 ID']] && r[header['中文題目']] && r[header['題目狀態']] === '網站使用中')
+    .map(r => {
+      const item = {
+        id: String(r[header['題目 ID']]).toLowerCase(),
+        prompt: r[header['中文題目']],
+        hints: splitLines_(r[header['提示詞']]),
+        frames: splitLines_(r[header['句型鷹架']]),
+        checks: splitLines_(r[header['自我檢查']]).map(x => x.replace(/^\d+[.、]\s*/, '')),
+        prep: Number(r[header['準備秒數']] || 0),
+        answer: Number(r[header['回答秒數']] || 0),
+        sort: Number(r[header['題目排序']] || 9999),
+        version: r[header['版本']] || '',
+      };
+      if (isSequence) {
+        item.scenes = ['第 1 格', '第 2 格', '第 3 格', '第 4 格']
+          .map(name => scene_(r[header[name]]))
+          .filter(Boolean);
+        item.frameSeconds = Number(r[header['每格秒數']] || 3);
+        item.mediaFolder = r[header['素材資料夾']] || '';
+      }
+      return item;
+    })
+    .sort((a, b) => a.sort - b.sort || a.id.localeCompare(b.id));
+}
+
+function translationRows_(sheet) {
+  const values = sheet.getDataRange().getDisplayValues();
+  const header = headerMap_(values[1]);
+  const languages = { zh: '中文', id: '印尼文', en: '英文', vi: '越南文', th: '泰文' };
+  const out = { zh: {}, id: {}, en: {}, vi: {}, th: {} };
+  values.slice(2)
+    .filter(r => r[header['文字 ID']] && r[header['網站發布狀態']] === '網站使用中')
+    .forEach(r => Object.keys(languages).forEach(code => {
+      const value = r[header[languages[code]]];
+      if (value) out[code][r[header['文字 ID']]] = value;
+    }));
+  return out;
+}
+
+function splitLines_(value) {
+  return String(value || '').split(/\r?\n/).map(x => x.trim()).filter(Boolean);
+}
+
+function scene_(value) {
+  const text = String(value || '').trim();
+  if (!text) return null;
+  const parts = text.split(/\s+/);
+  return [parts.shift(), parts.join(' ')];
 }
 
 function login_(body) {
