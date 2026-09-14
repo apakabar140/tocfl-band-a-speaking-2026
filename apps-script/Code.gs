@@ -152,6 +152,19 @@ function updateMemberStats_(userId, isMock) {
   profileSheet.getRange(rowIndex + 1, 6, 1, 3).setValues([[
     completed, practice, Number(profiles[rowIndex][7] || 0) + (isMock ? 1 : 0)
   ]]);
+  syncMemberStats_(profiles[rowIndex][1], completed, practice);
+}
+
+function syncMemberStats_(passportHash, completed, practice) {
+  const sheet = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.MEMBER_TAB);
+  const values = sheet.getDataRange().getDisplayValues();
+  const h = headerMap_(values[0]);
+  const index = values.slice(1).findIndex(r => sha256_(normalizePassport_(r[h['護照號碼']])) === passportHash);
+  if (index < 0) throw new Error('member_missing');
+  const rowNumber = index + 2;
+  if (h['完成題數'] !== undefined) sheet.getRange(rowNumber, h['完成題數'] + 1).setValue(completed);
+  if (h['練習次數'] !== undefined) sheet.getRange(rowNumber, h['練習次數'] + 1).setValue(practice);
+  if (h['最近練習日期'] !== undefined) sheet.getRange(rowNumber, h['最近練習日期'] + 1).setValue(new Date());
 }
 
 function touchMember_(passport, type) {
