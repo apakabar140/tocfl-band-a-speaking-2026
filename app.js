@@ -1,4 +1,5 @@
 const videoFrames=(folder,count)=>Array.from({length:count},(_,i)=>`./assets/video-questions/${folder}/${String(i+1).padStart(2,'0')}.jpg`);
+const legacyVideoFrameCounts={S001:7,S002:6,S003:6,S005:6,S008:6};
 const questions = {
   question: [
     { id:'q1', prompt:'你下班以後常常做什麼？', hints:['做什麼','跟誰','在哪裡','為什麼'], frames:['我下班以後常常＿＿＿。','有時候我會跟＿＿＿一起＿＿＿。','因為＿＿＿，所以＿＿＿。'], checks:['我有回答下班後做什麼。','我說了一個以上的細節。','我有說原因或感覺。','我的聲音聽得清楚。'] },
@@ -140,7 +141,7 @@ async function appsScript(action,payload={}){if(!cfg.appsScriptUrl)throw new Err
 function useAppsScript(){return (new URLSearchParams(location.search).get('backend')||cfg.backend)==='apps-script'}
 function preparePublishedQuestion(mode,item){
   if(mode!=='sequence'||!item.mediaFolder)return item;
-  const frameCount=item.scenes?.length||4;
+  const frameCount=legacyVideoFrameCounts[item.mediaFolder]||item.scenes?.length||4;
   return {...item,media:videoFrames(item.mediaFolder,frameCount)};
 }
 async function loadPublishedContent(){try{const data=await appsScript('content');['question','experience','sequence'].forEach(mode=>{if(data.questions?.[mode]?.length){const items=data.questions[mode].map(item=>preparePublishedQuestion(mode,item));questions[mode].splice(0,questions[mode].length,...items)}});['zh','id','en','vi','th'].forEach(code=>Object.assign(uiText[code],data.translations?.[code]||{}))}catch(error){console.warn('Using built-in content fallback',error)}}
