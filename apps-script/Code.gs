@@ -46,8 +46,8 @@ function doPost(e) {
 
 function content_() {
   const cache = CacheService.getScriptCache();
-  const cached = cache.get('published_content_v1');
-  if (cached) return JSON.parse(cached);
+  const cached = getChunkedCache_(cache, 'published_content_v2');
+  if (cached) return cached;
   const book = SpreadsheetApp.openById(CONFIG.QUESTION_SHEET_ID);
   const result = {
     ok: true,
@@ -58,8 +58,40 @@ function content_() {
     },
     translations: translationRows_(book.getSheetByName('平台介面翻譯表')),
   };
-  cache.put('published_content_v1', JSON.stringify(result), 300);
+  putChunkedCache_(cache, 'published_content_v2', result, 300);
   return result;
+}
+
+function getChunkedCache_(cache, key) {
+  try {
+    const count = Number(cache.get(key + '_count') || 0);
+    if (!count) return null;
+    const keys = Array.from({ length: count }, (_, index) => key + '_' + index);
+    const chunks = cache.getAll(keys);
+    if (keys.some(chunkKey => !chunks[chunkKey])) return null;
+    return JSON.parse(keys.map(chunkKey => chunks[chunkKey]).join(''));
+  } catch (error) {
+    console.warn('Unable to read content cache', error);
+    return null;
+  }
+}
+
+function putChunkedCache_(cache, key, value, seconds) {
+  try {
+    const payload = JSON.stringify(value);
+    const chunkSize = 20000;
+    const values = {};
+    let count = 0;
+    for (let offset = 0; offset < payload.length; offset += chunkSize) {
+      values[key + '_' + count] = payload.slice(offset, offset + chunkSize);
+      count++;
+    }
+    values[key + '_count'] = String(count);
+    cache.putAll(values, seconds);
+  } catch (error) {
+    // The content response is still valid even if temporary caching is unavailable.
+    console.warn('Unable to write content cache', error);
+  }
 }
 
 function questionRows_(sheet, isSequence) {
