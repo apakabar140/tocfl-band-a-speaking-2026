@@ -127,8 +127,7 @@ function login_(body) {
   }
 
   const passportHash = sha256_(passport);
-  const profile = findProfileByHash_(passportHash);
-  if (!profile) return { ok: false, error: 'profile_missing' };
+  const profile = findProfileByHash_(passportHash) || createProfile_(passportHash, member);
 
   const token = Utilities.getUuid() + Utilities.getUuid();
   CacheService.getScriptCache().put(token, JSON.stringify({ userId: profile.userId, passportHash }), CONFIG.SESSION_SECONDS);
@@ -192,6 +191,33 @@ function profiles_() {
     enabled: String(r[4]).toLowerCase() === 'true', completedQuestions: Number(r[5] || 0),
     practiceCount: Number(r[6] || 0), mockCount: Number(r[7] || 0),
   }));
+}
+
+function createProfile_(passportHash, member) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const existing = findProfileByHash_(passportHash);
+    if (existing) return existing;
+    const sheet = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.PROFILE_TAB);
+    const profile = {
+      userId: Utilities.getUuid(),
+      passportHash,
+      displayName: member.displayName,
+      interfaceLanguage: member.interfaceLanguage,
+      enabled: member.enabled,
+      completedQuestions: 0,
+      practiceCount: 0,
+      mockCount: 0,
+    };
+    sheet.appendRow([
+      profile.userId, profile.passportHash, profile.displayName, profile.interfaceLanguage,
+      profile.enabled, 0, 0, 0, '', '', new Date(),
+    ]);
+    return profile;
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 function findProfileByHash_(hash) { return profiles_().find(p => p.passportHash === hash); }
