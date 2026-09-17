@@ -121,14 +121,8 @@ function login_(body) {
   const birthday = normalizeBirthday_(body.birthday);
   if (!passport || birthday.length !== 8) return { ok: false, error: 'invalid_login' };
 
-  const sheet = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.MEMBER_TAB);
-  const values = sheet.getDataRange().getDisplayValues();
-  const header = headerMap_(values[0]);
-  const row = values.slice(1).find(r =>
-    normalizePassport_(r[header['護照號碼']]) === passport &&
-    normalizeBirthday_(r[header['出生年月日']]) === birthday
-  );
-  if (!row || String(row[header['開放使用']]).trim() !== '是') {
+  const member = findMemberByLogin_(passport, birthday);
+  if (!member || !member.enabled) {
     return { ok: false, error: 'invalid_login' };
   }
 
@@ -137,15 +131,16 @@ function login_(body) {
   if (!profile) return { ok: false, error: 'profile_missing' };
 
   const token = Utilities.getUuid() + Utilities.getUuid();
-  CacheService.getScriptCache().put(token, JSON.stringify({ userId: profile.userId }), CONFIG.SESSION_SECONDS);
+  CacheService.getScriptCache().put(token, JSON.stringify({ userId: profile.userId, passportHash }), CONFIG.SESSION_SECONDS);
   touchMember_(passport, 'login');
-  return { ok: true, token, profile: publicProfile_(profile), completedIds: completedIds_(profile.userId) };
+  return { ok: true, token, profile: publicProfile_(profile, member), completedIds: completedIds_(profile.userId) };
 }
 
 function restore_(token) {
   const session = session_(token);
   const profile = findProfileByUserId_(session.userId);
-  return { ok: true, profile: publicProfile_(profile), completedIds: completedIds_(session.userId) };
+  const member = profile ? findMemberByHash_(profile.passportHash) : null;
+  return { ok: true, profile: publicProfile_(profile, member), completedIds: completedIds_(session.userId) };
 }
 
 function recordPractice_(token, questionId) {
@@ -201,9 +196,31 @@ function profiles_() {
 
 function findProfileByHash_(hash) { return profiles_().find(p => p.passportHash === hash); }
 function findProfileByUserId_(id) { return profiles_().find(p => p.userId === id); }
-function publicProfile_(p) {
-  if (!p || !p.enabled) throw new Error('profile_disabled');
-  return { display_name:p.displayName, interface_language:p.interfaceLanguage, enabled:p.enabled,
+function members_() {
+  const sheet = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.MEMBER_TAB);
+  const values = sheet.getRange(1, 1, Math.max(sheet.getLastRow(), 1), 6).getDisplayValues();
+  const header = headerMap_(values[0]);
+  return values.slice(1)
+    .filter(r => normalizePassport_(r[header['護照號碼']]))
+    .map(r => ({
+      passport: normalizePassport_(r[header['護照號碼']]),
+      birthday: normalizeBirthday_(r[header['出生年月日']]),
+      displayName: String(r[header['姓名']] || '').trim(),
+      interfaceLanguage: String(r[header['介面語言']] || '').trim(),
+      enabled: String(r[header['開放使用']] || '').trim() === '是',
+    }));
+}
+function findMemberByLogin_(passport, birthday) {
+  return members_().find(m => m.passport === passport && m.birthday === birthday);
+}
+function findMemberByHash_(hash) {
+  return members_().find(m => sha256_(m.passport) === hash);
+}
+function publicProfile_(p, member) {
+  const enabled = member ? member.enabled : p && p.enabled;
+  if (!p || !enabled) throw new Error('profile_disabled');
+  return { display_name:(member && member.displayName) || p.displayName,
+    interface_language:(member && member.interfaceLanguage) || p.interfaceLanguage, enabled,
     completed_questions:p.completedQuestions, practice_count:p.practiceCount, mock_count:p.mockCount };
 }
 
