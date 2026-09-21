@@ -1,0 +1,1413 @@
+{
+  "generatedFrom": {
+    "spreadsheetId": "1z9UtZTHph_V3tvtxq_Eh4aHjs4UNgQfAZVmhg_tuDAY",
+    "questionSheet": "回答問題",
+    "experienceSheet": "經驗描述"
+  },
+  "voiceRule": {
+    "Q": "odd:Yating, even:Jiahao",
+    "E": "odd:Jiahao, even:Yating"
+  },
+  "items": [
+    {
+      "id": "Q1",
+      "text": "你下班以後常常做什麼？",
+      "order": 1,
+      "voice": "yating",
+      "file": "q001.wav"
+    },
+    {
+      "id": "Q2",
+      "text": "你每天怎麼去上班？為什麼？",
+      "order": 2,
+      "voice": "jiahao",
+      "file": "q002.wav"
+    },
+    {
+      "id": "Q3",
+      "text": "你休假的時候喜歡去哪裡？",
+      "order": 3,
+      "voice": "yating",
+      "file": "q003.wav"
+    },
+    {
+      "id": "Q4",
+      "text": "你比較喜歡自己煮飯，還是在外面吃？為什麼？",
+      "order": 4,
+      "voice": "jiahao",
+      "file": "q004.wav"
+    },
+    {
+      "id": "Q5",
+      "text": "你最常用手機做什麼？",
+      "order": 5,
+      "voice": "yating",
+      "file": "q005.wav"
+    },
+    {
+      "id": "Q6",
+      "text": "你喜歡臺灣的哪一種食物？為什麼？",
+      "order": 6,
+      "voice": "jiahao",
+      "file": "q006.wav"
+    },
+    {
+      "id": "Q7",
+      "text": "天氣不好的時候，你會做什麼？",
+      "order": 7,
+      "voice": "yating",
+      "file": "q007.wav"
+    },
+    {
+      "id": "Q8",
+      "text": "你買東西的時候最重視什麼？",
+      "order": 8,
+      "voice": "jiahao",
+      "file": "q008.wav"
+    },
+    {
+      "id": "Q9",
+      "text": "你平常怎麼學中文？",
+      "order": 9,
+      "voice": "yating",
+      "file": "q009.wav"
+    },
+    {
+      "id": "Q10",
+      "text": "如果朋友來臺灣，你會帶他去哪裡？",
+      "order": 10,
+      "voice": "jiahao",
+      "file": "q010.wav"
+    },
+    {
+      "id": "Q11",
+      "text": "你平常幾點起床？起床以後先做什麼？",
+      "order": 11,
+      "voice": "yating",
+      "file": "q011.wav"
+    },
+    {
+      "id": "Q12",
+      "text": "你最常跟誰一起吃飯？你們通常吃什麼？",
+      "order": 12,
+      "voice": "jiahao",
+      "file": "q012.wav"
+    },
+    {
+      "id": "Q13",
+      "text": "你工作中最常做什麼事情？",
+      "order": 13,
+      "voice": "yating",
+      "file": "q013.wav"
+    },
+    {
+      "id": "Q14",
+      "text": "工作很累的時候，你怎麼休息？",
+      "order": 14,
+      "voice": "jiahao",
+      "file": "q014.wav"
+    },
+    {
+      "id": "Q15",
+      "text": "你最喜歡喝什麼？什麼時候會喝？",
+      "order": 15,
+      "voice": "yating",
+      "file": "q015.wav"
+    },
+    {
+      "id": "Q16",
+      "text": "你會不會自己準備午餐？為什麼？",
+      "order": 16,
+      "voice": "jiahao",
+      "file": "q016.wav"
+    },
+    {
+      "id": "Q17",
+      "text": "你坐公車或火車的時候，通常會做什麼？",
+      "order": 17,
+      "voice": "yating",
+      "file": "q017.wav"
+    },
+    {
+      "id": "Q18",
+      "text": "從你住的地方到最近的商店要怎麼走？",
+      "order": 18,
+      "voice": "jiahao",
+      "file": "q018.wav"
+    },
+    {
+      "id": "Q19",
+      "text": "你通常去哪裡買生活用品？為什麼？",
+      "order": 19,
+      "voice": "yating",
+      "file": "q019.wav"
+    },
+    {
+      "id": "Q20",
+      "text": "買東西以前，你會先看價格嗎？為什麼？",
+      "order": 20,
+      "voice": "jiahao",
+      "file": "q020.wav"
+    },
+    {
+      "id": "Q21",
+      "text": "你身體不舒服的時候，通常先做什麼？",
+      "order": 21,
+      "voice": "yating",
+      "file": "q021.wav"
+    },
+    {
+      "id": "Q22",
+      "text": "你平常怎麼讓自己保持健康？",
+      "order": 22,
+      "voice": "jiahao",
+      "file": "q022.wav"
+    },
+    {
+      "id": "Q23",
+      "text": "天氣冷的時候，你會穿什麼衣服？",
+      "order": 23,
+      "voice": "yating",
+      "file": "q023.wav"
+    },
+    {
+      "id": "Q24",
+      "text": "你比較喜歡晴天還是雨天？為什麼？",
+      "order": 24,
+      "voice": "jiahao",
+      "file": "q024.wav"
+    },
+    {
+      "id": "Q25",
+      "text": "你住的地方附近有什麼？",
+      "order": 25,
+      "voice": "yating",
+      "file": "q025.wav"
+    },
+    {
+      "id": "Q26",
+      "text": "你喜歡現在住的地方嗎？為什麼？",
+      "order": 26,
+      "voice": "jiahao",
+      "file": "q026.wav"
+    },
+    {
+      "id": "Q27",
+      "text": "你最常做什麼運動？通常跟誰一起？",
+      "order": 27,
+      "voice": "yating",
+      "file": "q027.wav"
+    },
+    {
+      "id": "Q28",
+      "text": "晚上睡覺以前，你通常會做什麼？",
+      "order": 28,
+      "voice": "jiahao",
+      "file": "q028.wav"
+    },
+    {
+      "id": "Q29",
+      "text": "你來臺灣以後，最喜歡這裡的什麼？",
+      "order": 29,
+      "voice": "yating",
+      "file": "q029.wav"
+    },
+    {
+      "id": "Q30",
+      "text": "在臺灣生活，什麼事情對你來說比較不容易？",
+      "order": 30,
+      "voice": "jiahao",
+      "file": "q030.wav"
+    },
+    {
+      "id": "Q31",
+      "text": "你通常在哪裡買早餐？為什麼？",
+      "order": 31,
+      "voice": "yating",
+      "file": "q031.wav"
+    },
+    {
+      "id": "Q32",
+      "text": "你工作休息的時候喜歡做什麼？",
+      "order": 32,
+      "voice": "jiahao",
+      "file": "q032.wav"
+    },
+    {
+      "id": "Q33",
+      "text": "你比較喜歡搭公車還是騎腳踏車？為什麼？",
+      "order": 33,
+      "voice": "yating",
+      "file": "q033.wav"
+    },
+    {
+      "id": "Q34",
+      "text": "你平常多久打一次電話給家人？",
+      "order": 34,
+      "voice": "jiahao",
+      "file": "q034.wav"
+    },
+    {
+      "id": "Q35",
+      "text": "你最喜歡臺灣的哪一個季節？為什麼？",
+      "order": 35,
+      "voice": "yating",
+      "file": "q035.wav"
+    },
+    {
+      "id": "Q36",
+      "text": "如果今天不用上班，你想做什麼？",
+      "order": 36,
+      "voice": "jiahao",
+      "file": "q036.wav"
+    },
+    {
+      "id": "Q37",
+      "text": "你去超商的時候通常買什麼？",
+      "order": 37,
+      "voice": "yating",
+      "file": "q037.wav"
+    },
+    {
+      "id": "Q38",
+      "text": "你覺得學中文最有用的方法是什麼？",
+      "order": 38,
+      "voice": "jiahao",
+      "file": "q038.wav"
+    },
+    {
+      "id": "Q39",
+      "text": "你房間裡最重要的東西是什麼？為什麼？",
+      "order": 39,
+      "voice": "yating",
+      "file": "q039.wav"
+    },
+    {
+      "id": "Q40",
+      "text": "你不舒服的時候會先休息還是去看醫生？",
+      "order": 40,
+      "voice": "jiahao",
+      "file": "q040.wav"
+    },
+    {
+      "id": "Q41",
+      "text": "你通常怎麼記得重要的事情？",
+      "order": 41,
+      "voice": "yating",
+      "file": "q041.wav"
+    },
+    {
+      "id": "Q42",
+      "text": "你喜歡早上工作還是晚上工作？為什麼？",
+      "order": 42,
+      "voice": "jiahao",
+      "file": "q042.wav"
+    },
+    {
+      "id": "Q43",
+      "text": "你買衣服的時候會先試穿嗎？為什麼？",
+      "order": 43,
+      "voice": "yating",
+      "file": "q043.wav"
+    },
+    {
+      "id": "Q44",
+      "text": "你住的地方附近交通方便嗎？",
+      "order": 44,
+      "voice": "jiahao",
+      "file": "q044.wav"
+    },
+    {
+      "id": "Q45",
+      "text": "你最常用哪一個中文句子？什麼時候用？",
+      "order": 45,
+      "voice": "yating",
+      "file": "q045.wav"
+    },
+    {
+      "id": "Q46",
+      "text": "遇到不懂的中文時，你會怎麼辦？",
+      "order": 46,
+      "voice": "jiahao",
+      "file": "q046.wav"
+    },
+    {
+      "id": "Q47",
+      "text": "你喜歡一個人休假還是跟朋友一起？為什麼？",
+      "order": 47,
+      "voice": "yating",
+      "file": "q047.wav"
+    },
+    {
+      "id": "Q48",
+      "text": "你平常會帶水出門嗎？為什麼？",
+      "order": 48,
+      "voice": "jiahao",
+      "file": "q048.wav"
+    },
+    {
+      "id": "Q49",
+      "text": "你覺得住在城市方便，還是住在鄉下舒服？",
+      "order": 49,
+      "voice": "yating",
+      "file": "q049.wav"
+    },
+    {
+      "id": "Q50",
+      "text": "如果同事生日，你會怎麼祝福他？",
+      "order": 50,
+      "voice": "jiahao",
+      "file": "q050.wav"
+    },
+    {
+      "id": "Q51",
+      "text": "你每天幾點起床？起床以後先做什麼？",
+      "order": 51,
+      "voice": "yating",
+      "file": "q051.wav"
+    },
+    {
+      "id": "Q52",
+      "text": "你最常去哪一家店買東西？為什麼？",
+      "order": 52,
+      "voice": "jiahao",
+      "file": "q052.wav"
+    },
+    {
+      "id": "Q53",
+      "text": "天氣很熱的時候，你會做什麼？",
+      "order": 53,
+      "voice": "yating",
+      "file": "q053.wav"
+    },
+    {
+      "id": "Q54",
+      "text": "你上班或上課以前，通常會準備什麼？",
+      "order": 54,
+      "voice": "jiahao",
+      "file": "q054.wav"
+    },
+    {
+      "id": "Q55",
+      "text": "你喜歡喝茶還是咖啡？為什麼？",
+      "order": 55,
+      "voice": "yating",
+      "file": "q055.wav"
+    },
+    {
+      "id": "Q56",
+      "text": "你家附近晚上安靜嗎？請說一說。",
+      "order": 56,
+      "voice": "jiahao",
+      "file": "q056.wav"
+    },
+    {
+      "id": "Q57",
+      "text": "如果朋友第一次來你住的城市，你會帶他去哪裡？",
+      "order": 57,
+      "voice": "yating",
+      "file": "q057.wav"
+    },
+    {
+      "id": "Q58",
+      "text": "你多久整理一次房間？通常整理哪些地方？",
+      "order": 58,
+      "voice": "jiahao",
+      "file": "q058.wav"
+    },
+    {
+      "id": "Q59",
+      "text": "你比較喜歡早上工作，還是晚上工作？為什麼？",
+      "order": 59,
+      "voice": "yating",
+      "file": "q059.wav"
+    },
+    {
+      "id": "Q60",
+      "text": "你最近想買什麼東西？為什麼？",
+      "order": 60,
+      "voice": "jiahao",
+      "file": "q060.wav"
+    },
+    {
+      "id": "Q61",
+      "text": "你生病的時候，誰會照顧你？",
+      "order": 61,
+      "voice": "yating",
+      "file": "q061.wav"
+    },
+    {
+      "id": "Q62",
+      "text": "你會不會自己煮飯？最常煮什麼？",
+      "order": 62,
+      "voice": "jiahao",
+      "file": "q062.wav"
+    },
+    {
+      "id": "Q63",
+      "text": "你平常怎麼學新的中文字？",
+      "order": 63,
+      "voice": "yating",
+      "file": "q063.wav"
+    },
+    {
+      "id": "Q64",
+      "text": "你喜歡住在高樓還是低樓？為什麼？",
+      "order": 64,
+      "voice": "jiahao",
+      "file": "q064.wav"
+    },
+    {
+      "id": "Q65",
+      "text": "你出門時一定會帶什麼？",
+      "order": 65,
+      "voice": "yating",
+      "file": "q065.wav"
+    },
+    {
+      "id": "Q66",
+      "text": "你最常使用哪一種交通工具？請說一說。",
+      "order": 66,
+      "voice": "jiahao",
+      "file": "q066.wav"
+    },
+    {
+      "id": "Q67",
+      "text": "你通常在哪裡買菜？那裡怎麼樣？",
+      "order": 67,
+      "voice": "yating",
+      "file": "q067.wav"
+    },
+    {
+      "id": "Q68",
+      "text": "下雨天你喜歡待在家，還是出去？為什麼？",
+      "order": 68,
+      "voice": "jiahao",
+      "file": "q068.wav"
+    },
+    {
+      "id": "Q69",
+      "text": "你覺得學中文最有用的是什麼？",
+      "order": 69,
+      "voice": "yating",
+      "file": "q069.wav"
+    },
+    {
+      "id": "Q70",
+      "text": "你和同事或同學一起吃飯時，通常聊什麼？",
+      "order": 70,
+      "voice": "jiahao",
+      "file": "q070.wav"
+    },
+    {
+      "id": "Q71",
+      "text": "你平常用手機做哪些事情？",
+      "order": 71,
+      "voice": "yating",
+      "file": "q071.wav"
+    },
+    {
+      "id": "Q72",
+      "text": "你最喜歡家裡的哪一個地方？為什麼？",
+      "order": 72,
+      "voice": "jiahao",
+      "file": "q072.wav"
+    },
+    {
+      "id": "Q73",
+      "text": "你會在網路上買東西嗎？請說一說。",
+      "order": 73,
+      "voice": "yating",
+      "file": "q073.wav"
+    },
+    {
+      "id": "Q74",
+      "text": "你覺得每天走路重要嗎？為什麼？",
+      "order": 74,
+      "voice": "jiahao",
+      "file": "q074.wav"
+    },
+    {
+      "id": "Q75",
+      "text": "你通常怎麼過生日？",
+      "order": 75,
+      "voice": "yating",
+      "file": "q075.wav"
+    },
+    {
+      "id": "Q76",
+      "text": "你喜歡一個人旅行，還是跟別人旅行？",
+      "order": 76,
+      "voice": "jiahao",
+      "file": "q076.wav"
+    },
+    {
+      "id": "Q77",
+      "text": "工作或上課很忙的時候，你怎麼吃午餐？",
+      "order": 77,
+      "voice": "yating",
+      "file": "q077.wav"
+    },
+    {
+      "id": "Q78",
+      "text": "你最常跟家人說哪一件事？",
+      "order": 78,
+      "voice": "jiahao",
+      "file": "q078.wav"
+    },
+    {
+      "id": "Q79",
+      "text": "你買衣服時，最重視什麼？",
+      "order": 79,
+      "voice": "yating",
+      "file": "q079.wav"
+    },
+    {
+      "id": "Q80",
+      "text": "你喜歡聽音樂嗎？通常什麼時候聽？",
+      "order": 80,
+      "voice": "jiahao",
+      "file": "q080.wav"
+    },
+    {
+      "id": "Q81",
+      "text": "你覺得你住的地方交通方便嗎？",
+      "order": 81,
+      "voice": "yating",
+      "file": "q081.wav"
+    },
+    {
+      "id": "Q82",
+      "text": "你每天會喝多少水？你怎麼提醒自己？",
+      "order": 82,
+      "voice": "jiahao",
+      "file": "q082.wav"
+    },
+    {
+      "id": "Q83",
+      "text": "你最喜歡哪一種水果？怎麼吃？",
+      "order": 83,
+      "voice": "yating",
+      "file": "q083.wav"
+    },
+    {
+      "id": "Q84",
+      "text": "你遇到不認識的人時，會先說話嗎？",
+      "order": 84,
+      "voice": "jiahao",
+      "file": "q084.wav"
+    },
+    {
+      "id": "Q85",
+      "text": "你平常在哪裡運動？做什麼運動？",
+      "order": 85,
+      "voice": "yating",
+      "file": "q085.wav"
+    },
+    {
+      "id": "Q86",
+      "text": "你覺得房租貴嗎？你選房子時會注意什麼？",
+      "order": 86,
+      "voice": "jiahao",
+      "file": "q086.wav"
+    },
+    {
+      "id": "Q87",
+      "text": "你常去圖書館嗎？去那裡做什麼？",
+      "order": 87,
+      "voice": "yating",
+      "file": "q087.wav"
+    },
+    {
+      "id": "Q88",
+      "text": "你出國時最擔心什麼事情？",
+      "order": 88,
+      "voice": "jiahao",
+      "file": "q088.wav"
+    },
+    {
+      "id": "Q89",
+      "text": "你覺得工作時穿什麼衣服最方便？",
+      "order": 89,
+      "voice": "yating",
+      "file": "q089.wav"
+    },
+    {
+      "id": "Q90",
+      "text": "你喜歡吃早餐嗎？最常吃什麼？",
+      "order": 90,
+      "voice": "jiahao",
+      "file": "q090.wav"
+    },
+    {
+      "id": "Q91",
+      "text": "如果今天提早下班或下課，你想做什麼？",
+      "order": 91,
+      "voice": "yating",
+      "file": "q091.wav"
+    },
+    {
+      "id": "Q92",
+      "text": "你會用中文打電話嗎？什麼時候需要？",
+      "order": 92,
+      "voice": "jiahao",
+      "file": "q092.wav"
+    },
+    {
+      "id": "Q93",
+      "text": "你覺得超市和傳統市場哪一個比較方便？",
+      "order": 93,
+      "voice": "yating",
+      "file": "q093.wav"
+    },
+    {
+      "id": "Q94",
+      "text": "你平常怎麼跟遠方的朋友聯絡？",
+      "order": 94,
+      "voice": "jiahao",
+      "file": "q094.wav"
+    },
+    {
+      "id": "Q95",
+      "text": "你喜歡養寵物嗎？為什麼？",
+      "order": 95,
+      "voice": "yating",
+      "file": "q095.wav"
+    },
+    {
+      "id": "Q96",
+      "text": "你覺得週末應該休息，還是學新的東西？",
+      "order": 96,
+      "voice": "jiahao",
+      "file": "q096.wav"
+    },
+    {
+      "id": "Q97",
+      "text": "你最常幫家人做什麼事？",
+      "order": 97,
+      "voice": "yating",
+      "file": "q097.wav"
+    },
+    {
+      "id": "Q98",
+      "text": "你覺得看醫生方便嗎？為什麼？",
+      "order": 98,
+      "voice": "jiahao",
+      "file": "q098.wav"
+    },
+    {
+      "id": "Q99",
+      "text": "你搭車時喜歡坐哪裡？為什麼？",
+      "order": 99,
+      "voice": "yating",
+      "file": "q099.wav"
+    },
+    {
+      "id": "Q100",
+      "text": "你下一個想學習的語言是什麼？為什麼？",
+      "order": 100,
+      "voice": "jiahao",
+      "file": "q100.wav"
+    },
+    {
+      "id": "E1",
+      "text": "請說一說你第一次來臺灣的經驗。",
+      "order": 1,
+      "voice": "jiahao",
+      "file": "e001.wav"
+    },
+    {
+      "id": "E2",
+      "text": "請說一說一次別人幫助你的經驗。",
+      "order": 2,
+      "voice": "yating",
+      "file": "e002.wav"
+    },
+    {
+      "id": "E3",
+      "text": "請說一說一次去看醫生的經驗。",
+      "order": 3,
+      "voice": "jiahao",
+      "file": "e003.wav"
+    },
+    {
+      "id": "E4",
+      "text": "請說一說一次讓你很開心的休假經驗。",
+      "order": 4,
+      "voice": "yating",
+      "file": "e004.wav"
+    },
+    {
+      "id": "E5",
+      "text": "請說一說一次上班遲到的經驗。",
+      "order": 5,
+      "voice": "jiahao",
+      "file": "e005.wav"
+    },
+    {
+      "id": "E6",
+      "text": "請說一說一次和朋友一起吃飯的經驗。",
+      "order": 6,
+      "voice": "yating",
+      "file": "e006.wav"
+    },
+    {
+      "id": "E7",
+      "text": "請說一說一次找不到路的經驗。",
+      "order": 7,
+      "voice": "jiahao",
+      "file": "e007.wav"
+    },
+    {
+      "id": "E8",
+      "text": "請說一說一次學會新技能的經驗。",
+      "order": 8,
+      "voice": "yating",
+      "file": "e008.wav"
+    },
+    {
+      "id": "E9",
+      "text": "請說一說一次搬家的經驗。",
+      "order": 9,
+      "voice": "jiahao",
+      "file": "e009.wav"
+    },
+    {
+      "id": "E10",
+      "text": "請說一說一次收到禮物的經驗。",
+      "order": 10,
+      "voice": "yating",
+      "file": "e010.wav"
+    },
+    {
+      "id": "E11",
+      "text": "請說一說你第一天上班的經驗。",
+      "order": 11,
+      "voice": "jiahao",
+      "file": "e011.wav"
+    },
+    {
+      "id": "E12",
+      "text": "請說一說一次工作中遇到問題的經驗。",
+      "order": 12,
+      "voice": "yating",
+      "file": "e012.wav"
+    },
+    {
+      "id": "E13",
+      "text": "請說一說一次跟同事合作的經驗。",
+      "order": 13,
+      "voice": "jiahao",
+      "file": "e013.wav"
+    },
+    {
+      "id": "E14",
+      "text": "請說一說一次工作很忙的經驗。",
+      "order": 14,
+      "voice": "yating",
+      "file": "e014.wav"
+    },
+    {
+      "id": "E15",
+      "text": "請說一說一次學中文的經驗。",
+      "order": 15,
+      "voice": "jiahao",
+      "file": "e015.wav"
+    },
+    {
+      "id": "E16",
+      "text": "請說一說一次教別人做事情的經驗。",
+      "order": 16,
+      "voice": "yating",
+      "file": "e016.wav"
+    },
+    {
+      "id": "E17",
+      "text": "請說一說一次你幫助別人的經驗。",
+      "order": 17,
+      "voice": "jiahao",
+      "file": "e017.wav"
+    },
+    {
+      "id": "E18",
+      "text": "請說一說一次朋友來找你的經驗。",
+      "order": 18,
+      "voice": "yating",
+      "file": "e018.wav"
+    },
+    {
+      "id": "E19",
+      "text": "請說一說一次身體不舒服但還要工作的經驗。",
+      "order": 19,
+      "voice": "jiahao",
+      "file": "e019.wav"
+    },
+    {
+      "id": "E20",
+      "text": "請說一說一次去藥局買藥的經驗。",
+      "order": 20,
+      "voice": "yating",
+      "file": "e020.wav"
+    },
+    {
+      "id": "E21",
+      "text": "請說一說一次搭錯車的經驗。",
+      "order": 21,
+      "voice": "jiahao",
+      "file": "e021.wav"
+    },
+    {
+      "id": "E22",
+      "text": "請說一說一次旅行的經驗。",
+      "order": 22,
+      "voice": "yating",
+      "file": "e022.wav"
+    },
+    {
+      "id": "E23",
+      "text": "請說一說一次買到不合適商品的經驗。",
+      "order": 23,
+      "voice": "jiahao",
+      "file": "e023.wav"
+    },
+    {
+      "id": "E24",
+      "text": "請說一說一次去市場買東西的經驗。",
+      "order": 24,
+      "voice": "yating",
+      "file": "e024.wav"
+    },
+    {
+      "id": "E25",
+      "text": "請說一說一次過節的經驗。",
+      "order": 25,
+      "voice": "jiahao",
+      "file": "e025.wav"
+    },
+    {
+      "id": "E26",
+      "text": "請說一說一次慶祝生日的經驗。",
+      "order": 26,
+      "voice": "yating",
+      "file": "e026.wav"
+    },
+    {
+      "id": "E27",
+      "text": "請說一說一次東西壞掉的經驗。",
+      "order": 27,
+      "voice": "jiahao",
+      "file": "e027.wav"
+    },
+    {
+      "id": "E28",
+      "text": "請說一說一次忘記帶重要東西的經驗。",
+      "order": 28,
+      "voice": "yating",
+      "file": "e028.wav"
+    },
+    {
+      "id": "E29",
+      "text": "請說一說一次下大雨的經驗。",
+      "order": 29,
+      "voice": "jiahao",
+      "file": "e029.wav"
+    },
+    {
+      "id": "E30",
+      "text": "請說一說一次解決生活問題的經驗。",
+      "order": 30,
+      "voice": "yating",
+      "file": "e030.wav"
+    },
+    {
+      "id": "E31",
+      "text": "請說一說一次第一次自己搭公車的經驗。",
+      "order": 31,
+      "voice": "jiahao",
+      "file": "e031.wav"
+    },
+    {
+      "id": "E32",
+      "text": "請說一說一次在市場買東西的經驗。",
+      "order": 32,
+      "voice": "yating",
+      "file": "e032.wav"
+    },
+    {
+      "id": "E33",
+      "text": "請說一說一次跟家人視訊的經驗。",
+      "order": 33,
+      "voice": "jiahao",
+      "file": "e033.wav"
+    },
+    {
+      "id": "E34",
+      "text": "請說一說一次忘記帶雨傘的經驗。",
+      "order": 34,
+      "voice": "yating",
+      "file": "e034.wav"
+    },
+    {
+      "id": "E35",
+      "text": "請說一說一次請同事幫忙的經驗。",
+      "order": 35,
+      "voice": "jiahao",
+      "file": "e035.wav"
+    },
+    {
+      "id": "E36",
+      "text": "請說一說一次去郵局寄東西的經驗。",
+      "order": 36,
+      "voice": "yating",
+      "file": "e036.wav"
+    },
+    {
+      "id": "E37",
+      "text": "請說一說一次在臺灣過節的經驗。",
+      "order": 37,
+      "voice": "jiahao",
+      "file": "e037.wav"
+    },
+    {
+      "id": "E38",
+      "text": "請說一說一次買到不合適衣服的經驗。",
+      "order": 38,
+      "voice": "yating",
+      "file": "e038.wav"
+    },
+    {
+      "id": "E39",
+      "text": "請說一說一次手機沒有電的經驗。",
+      "order": 39,
+      "voice": "jiahao",
+      "file": "e039.wav"
+    },
+    {
+      "id": "E40",
+      "text": "請說一說一次第一次用中文點餐的經驗。",
+      "order": 40,
+      "voice": "yating",
+      "file": "e040.wav"
+    },
+    {
+      "id": "E41",
+      "text": "請說一說一次工作提早完成的經驗。",
+      "order": 41,
+      "voice": "jiahao",
+      "file": "e041.wav"
+    },
+    {
+      "id": "E42",
+      "text": "請說一說一次鄰居幫助你的經驗。",
+      "order": 42,
+      "voice": "yating",
+      "file": "e042.wav"
+    },
+    {
+      "id": "E43",
+      "text": "請說一說一次去銀行辦事情的經驗。",
+      "order": 43,
+      "voice": "jiahao",
+      "file": "e043.wav"
+    },
+    {
+      "id": "E44",
+      "text": "請說一說一次參加朋友生日會的經驗。",
+      "order": 44,
+      "voice": "yating",
+      "file": "e044.wav"
+    },
+    {
+      "id": "E45",
+      "text": "請說一說一次在公園運動的經驗。",
+      "order": 45,
+      "voice": "jiahao",
+      "file": "e045.wav"
+    },
+    {
+      "id": "E46",
+      "text": "請說一說一次房間停電的經驗。",
+      "order": 46,
+      "voice": "yating",
+      "file": "e046.wav"
+    },
+    {
+      "id": "E47",
+      "text": "請說一說一次收到錯誤包裹的經驗。",
+      "order": 47,
+      "voice": "jiahao",
+      "file": "e047.wav"
+    },
+    {
+      "id": "E48",
+      "text": "請說一說一次跟別人分享食物的經驗。",
+      "order": 48,
+      "voice": "yating",
+      "file": "e048.wav"
+    },
+    {
+      "id": "E49",
+      "text": "請說一說一次聽不懂別人說中文的經驗。",
+      "order": 49,
+      "voice": "jiahao",
+      "file": "e049.wav"
+    },
+    {
+      "id": "E50",
+      "text": "請說一說一次找到遺失東西的經驗。",
+      "order": 50,
+      "voice": "yating",
+      "file": "e050.wav"
+    },
+    {
+      "id": "E51",
+      "text": "請說一次你第一次自己去新地方的經驗。",
+      "order": 51,
+      "voice": "jiahao",
+      "file": "e051.wav"
+    },
+    {
+      "id": "E52",
+      "text": "請說一次你做飯給別人吃的經驗。",
+      "order": 52,
+      "voice": "yating",
+      "file": "e052.wav"
+    },
+    {
+      "id": "E53",
+      "text": "請說一次你因為天氣改變計畫的經驗。",
+      "order": 53,
+      "voice": "jiahao",
+      "file": "e053.wav"
+    },
+    {
+      "id": "E54",
+      "text": "請說一次你在工作或學校學會新事情的經驗。",
+      "order": 54,
+      "voice": "yating",
+      "file": "e054.wav"
+    },
+    {
+      "id": "E55",
+      "text": "請說一次你請別人拍照的經驗。",
+      "order": 55,
+      "voice": "jiahao",
+      "file": "e055.wav"
+    },
+    {
+      "id": "E56",
+      "text": "請說一次你等車等很久的經驗。",
+      "order": 56,
+      "voice": "yating",
+      "file": "e056.wav"
+    },
+    {
+      "id": "E57",
+      "text": "請說一次你買到很便宜的東西的經驗。",
+      "order": 57,
+      "voice": "jiahao",
+      "file": "e057.wav"
+    },
+    {
+      "id": "E58",
+      "text": "請說一次你跟朋友一起運動的經驗。",
+      "order": 58,
+      "voice": "yating",
+      "file": "e058.wav"
+    },
+    {
+      "id": "E59",
+      "text": "請說一次你第一次用中文打電話的經驗。",
+      "order": 59,
+      "voice": "jiahao",
+      "file": "e059.wav"
+    },
+    {
+      "id": "E60",
+      "text": "請說一次你搬家的經驗。",
+      "order": 60,
+      "voice": "yating",
+      "file": "e060.wav"
+    },
+    {
+      "id": "E61",
+      "text": "請說一次你忘記帶重要東西的經驗。",
+      "order": 61,
+      "voice": "jiahao",
+      "file": "e061.wav"
+    },
+    {
+      "id": "E62",
+      "text": "請說一次你在餐廳點錯餐的經驗。",
+      "order": 62,
+      "voice": "yating",
+      "file": "e062.wav"
+    },
+    {
+      "id": "E63",
+      "text": "請說一次你參加朋友婚禮或聚會的經驗。",
+      "order": 63,
+      "voice": "jiahao",
+      "file": "e063.wav"
+    },
+    {
+      "id": "E64",
+      "text": "請說一次你在台灣問路的經驗。",
+      "order": 64,
+      "voice": "yating",
+      "file": "e064.wav"
+    },
+    {
+      "id": "E65",
+      "text": "請說一次你幫助陌生人的經驗。",
+      "order": 65,
+      "voice": "jiahao",
+      "file": "e065.wav"
+    },
+    {
+      "id": "E66",
+      "text": "請說一次你錯過重要時間的經驗。",
+      "order": 66,
+      "voice": "yating",
+      "file": "e066.wav"
+    },
+    {
+      "id": "E67",
+      "text": "請說一次你第一次在網路上買東西的經驗。",
+      "order": 67,
+      "voice": "jiahao",
+      "file": "e067.wav"
+    },
+    {
+      "id": "E68",
+      "text": "請說一次你收到意外禮物的經驗。",
+      "order": 68,
+      "voice": "yating",
+      "file": "e068.wav"
+    },
+    {
+      "id": "E69",
+      "text": "請說一次你身體不舒服還去上班或上課的經驗。",
+      "order": 69,
+      "voice": "jiahao",
+      "file": "e069.wav"
+    },
+    {
+      "id": "E70",
+      "text": "請說一次你在公園看到有趣事情的經驗。",
+      "order": 70,
+      "voice": "yating",
+      "file": "e070.wav"
+    },
+    {
+      "id": "E71",
+      "text": "請說一次你第一次搭飛機的經驗。",
+      "order": 71,
+      "voice": "jiahao",
+      "file": "e071.wav"
+    },
+    {
+      "id": "E72",
+      "text": "請說一次你和別人一起打掃的經驗。",
+      "order": 72,
+      "voice": "yating",
+      "file": "e072.wav"
+    },
+    {
+      "id": "E73",
+      "text": "請說一次你吃到沒吃過的食物的經驗。",
+      "order": 73,
+      "voice": "jiahao",
+      "file": "e073.wav"
+    },
+    {
+      "id": "E74",
+      "text": "請說一次你在工作中犯小錯誤的經驗。",
+      "order": 74,
+      "voice": "yating",
+      "file": "e074.wav"
+    },
+    {
+      "id": "E75",
+      "text": "請說一次你參加中文活動的經驗。",
+      "order": 75,
+      "voice": "jiahao",
+      "file": "e075.wav"
+    },
+    {
+      "id": "E76",
+      "text": "請說一次你把東西借給別人的經驗。",
+      "order": 76,
+      "voice": "yating",
+      "file": "e076.wav"
+    },
+    {
+      "id": "E77",
+      "text": "請說一次你搭計程車的經驗。",
+      "order": 77,
+      "voice": "jiahao",
+      "file": "e077.wav"
+    },
+    {
+      "id": "E78",
+      "text": "請說一次你排隊排很久的經驗。",
+      "order": 78,
+      "voice": "yating",
+      "file": "e078.wav"
+    },
+    {
+      "id": "E79",
+      "text": "請說一次你和家人一起旅行的經驗。",
+      "order": 79,
+      "voice": "jiahao",
+      "file": "e079.wav"
+    },
+    {
+      "id": "E80",
+      "text": "請說一次你第一次去醫院的經驗。",
+      "order": 80,
+      "voice": "yating",
+      "file": "e080.wav"
+    },
+    {
+      "id": "E81",
+      "text": "請說一次你向別人道歉的經驗。",
+      "order": 81,
+      "voice": "jiahao",
+      "file": "e081.wav"
+    },
+    {
+      "id": "E82",
+      "text": "請說一次你學會使用新機器的經驗。",
+      "order": 82,
+      "voice": "yating",
+      "file": "e082.wav"
+    },
+    {
+      "id": "E83",
+      "text": "請說一次你忘記帶錢或錢不夠的經驗。",
+      "order": 83,
+      "voice": "jiahao",
+      "file": "e083.wav"
+    },
+    {
+      "id": "E84",
+      "text": "請說一次你和朋友一起看電影的經驗。",
+      "order": 84,
+      "voice": "yating",
+      "file": "e084.wav"
+    },
+    {
+      "id": "E85",
+      "text": "請說一次你因為迷路而遲到的經驗。",
+      "order": 85,
+      "voice": "jiahao",
+      "file": "e085.wav"
+    },
+    {
+      "id": "E86",
+      "text": "請說一次你照顧小孩或長輩的經驗。",
+      "order": 86,
+      "voice": "yating",
+      "file": "e086.wav"
+    },
+    {
+      "id": "E87",
+      "text": "請說一次你第一次領薪水的經驗。",
+      "order": 87,
+      "voice": "jiahao",
+      "file": "e087.wav"
+    },
+    {
+      "id": "E88",
+      "text": "請說一次你在夜市買東西的經驗。",
+      "order": 88,
+      "voice": "yating",
+      "file": "e088.wav"
+    },
+    {
+      "id": "E89",
+      "text": "請說一次你換工作或換班的經驗。",
+      "order": 89,
+      "voice": "jiahao",
+      "file": "e089.wav"
+    },
+    {
+      "id": "E90",
+      "text": "請說一次你參加比賽或表演的經驗。",
+      "order": 90,
+      "voice": "yating",
+      "file": "e090.wav"
+    },
+    {
+      "id": "E91",
+      "text": "請說一次你在網路上學東西的經驗。",
+      "order": 91,
+      "voice": "jiahao",
+      "file": "e091.wav"
+    },
+    {
+      "id": "E92",
+      "text": "請說一次你遇到很好的服務人員的經驗。",
+      "order": 92,
+      "voice": "yating",
+      "file": "e092.wav"
+    },
+    {
+      "id": "E93",
+      "text": "請說一次你第一次去朋友家的經驗。",
+      "order": 93,
+      "voice": "jiahao",
+      "file": "e093.wav"
+    },
+    {
+      "id": "E94",
+      "text": "請說一次你和室友或家人一起決定事情的經驗。",
+      "order": 94,
+      "voice": "yating",
+      "file": "e094.wav"
+    },
+    {
+      "id": "E95",
+      "text": "請說一次你在假日早起的經驗。",
+      "order": 95,
+      "voice": "jiahao",
+      "file": "e095.wav"
+    },
+    {
+      "id": "E96",
+      "text": "請說一次你收到錯誤訊息的經驗。",
+      "order": 96,
+      "voice": "yating",
+      "file": "e096.wav"
+    },
+    {
+      "id": "E97",
+      "text": "請說一次你把中文說錯的經驗。",
+      "order": 97,
+      "voice": "jiahao",
+      "file": "e097.wav"
+    },
+    {
+      "id": "E98",
+      "text": "請說一次你去政府機關辦事情的經驗。",
+      "order": 98,
+      "voice": "yating",
+      "file": "e098.wav"
+    },
+    {
+      "id": "E99",
+      "text": "請說一次你和朋友分享好消息的經驗。",
+      "order": 99,
+      "voice": "jiahao",
+      "file": "e099.wav"
+    },
+    {
+      "id": "E100",
+      "text": "請說一次你完成一件很難事情的經驗。",
+      "order": 100,
+      "voice": "yating",
+      "file": "e100.wav"
+    }
+  ]
+}
