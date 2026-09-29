@@ -153,18 +153,23 @@ function login_(body) {
   const birthday = normalizeBirthday_(body.birthday);
   if (!passport || birthday.length !== 8) return { ok: false, error: 'invalid_login' };
 
-  const member = findMemberByLogin_(passport, birthday);
+  // Keep one spreadsheet connection and one read per table during login.
+  // SpreadsheetApp calls are the slowest part of an Apps Script request.
+  const spreadsheet = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID);
+  const member = members_(spreadsheet).find(m => m.passport === passport && m.birthday === birthday);
   if (!member || !member.enabled) {
     return { ok: false, error: 'invalid_login' };
   }
 
   const passportHash = sha256_(passport);
-  const profile = findProfileByHash_(passportHash) || createProfile_(passportHash, member);
+  const profiles = profiles_(spreadsheet);
+  const profile = profiles.find(p => p.passportHash === passportHash) ||
+    createProfile_(passportHash, member, profiles, spreadsheet);
 
   const token = Utilities.getUuid() + Utilities.getUuid();
   CacheService.getScriptCache().put(token, JSON.stringify({ userId: profile.userId, passportHash }), CONFIG.SESSION_SECONDS);
-  touchMember_(passport, 'login');
-  return { ok: true, token, profile: publicProfile_(profile, member), completedIds: completedIds_(profile.userId) };
+  touchMember_(passport, 'login', member, spreadsheet);
+  return { ok: true, token, profile: publicProfile_(profile, member), completedIds: completedIds_(profile.userId, spreadsheet) };
 }
 
 function restore_(token) {
@@ -216,8 +221,10 @@ function session_(token) {
   return JSON.parse(raw);
 }
 
-function profiles_() {
-  const values = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.PROFILE_TAB).getDataRange().getDisplayValues();
+function profiles_(spreadsheet) {
+  const book = spreadsheet || SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID);
+  const sheet = book.getSheetByName(CONFIG.PROFILE_TAB);
+  const values = sheet.getRange(1, 1, Math.max(sheet.getLastRow(), 1), 11).getDisplayValues();
   return values.slice(2).map(r => ({
     userId: r[0], passportHash: r[1], displayName: r[2], interfaceLanguage: r[3],
     enabled: String(r[4]).toLowerCase() === 'true', completedQuestions: Number(r[5] || 0),
@@ -225,13 +232,17 @@ function profiles_() {
   }));
 }
 
-function createProfile_(passportHash, member) {
+function createProfile_(passportHash, member, knownProfiles, spreadsheet) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
-    const existing = findProfileByHash_(passportHash);
+    const book = spreadsheet || SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID);
+    // Recheck after acquiring the lock so two simultaneous first logins cannot
+    // create duplicate profiles for the same passport.
+    const existing = (knownProfiles || []).find(p => p.passportHash === passportHash) ||
+      profiles_(book).find(p => p.passportHash === passportHash);
     if (existing) return existing;
-    const sheet = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.PROFILE_TAB);
+    const sheet = book.getSheetByName(CONFIG.PROFILE_TAB);
     const profile = {
       userId: Utilities.getUuid(),
       passportHash,
@@ -254,19 +265,21 @@ function createProfile_(passportHash, member) {
 
 function findProfileByHash_(hash) { return profiles_().find(p => p.passportHash === hash); }
 function findProfileByUserId_(id) { return profiles_().find(p => p.userId === id); }
-function members_() {
-  const sheet = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.MEMBER_TAB);
+function members_(spreadsheet) {
+  const book = spreadsheet || SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID);
+  const sheet = book.getSheetByName(CONFIG.MEMBER_TAB);
   const values = sheet.getRange(1, 1, Math.max(sheet.getLastRow(), 1), 6).getDisplayValues();
   const header = headerMap_(values[0]);
   return values.slice(1)
-    .filter(r => normalizePassport_(r[header['護照號碼']]))
-    .map(r => ({
+    .map((r, index) => ({
       passport: normalizePassport_(r[header['護照號碼']]),
       birthday: normalizeBirthday_(r[header['出生年月日']]),
       displayName: String(r[header['姓名']] || '').trim(),
       interfaceLanguage: String(r[header['介面語言']] || '').trim(),
       enabled: String(r[header['開放使用']] || '').trim() === '是',
-    }));
+      rowNumber: index + 2,
+    }))
+    .filter(member => member.passport);
 }
 function findMemberByLogin_(passport, birthday) {
   return members_().find(m => m.passport === passport && m.birthday === birthday);
@@ -282,8 +295,10 @@ function publicProfile_(p, member) {
     completed_questions:p.completedQuestions, practice_count:p.practiceCount, mock_count:p.mockCount };
 }
 
-function completedIds_(userId) {
-  const values = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.PROGRESS_TAB).getDataRange().getDisplayValues();
+function completedIds_(userId, spreadsheet) {
+  const book = spreadsheet || SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID);
+  const sheet = book.getSheetByName(CONFIG.PROGRESS_TAB);
+  const values = sheet.getRange(1, 1, Math.max(sheet.getLastRow(), 1), 4).getDisplayValues();
   return values.slice(2).filter(r => r[0] === userId).map(r => r[1]);
 }
 
@@ -317,14 +332,18 @@ function syncMemberStats_(passportHash, completed, practice, mock) {
   if (h['最近練習日期'] !== undefined) sheet.getRange(rowNumber, h['最近練習日期'] + 1).setValue(new Date());
 }
 
-function touchMember_(passport, type) {
-  const sheet = SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID).getSheetByName(CONFIG.MEMBER_TAB);
-  const values = sheet.getDataRange().getDisplayValues();
-  const h = headerMap_(values[0]);
-  const index = values.slice(1).findIndex(r => normalizePassport_(r[h['護照號碼']]) === passport);
-  if (index < 0) return;
+function touchMember_(passport, type, knownMember, spreadsheet) {
+  const book = spreadsheet || SpreadsheetApp.openById(CONFIG.MEMBER_SHEET_ID);
+  const sheet = book.getSheetByName(CONFIG.MEMBER_TAB);
+  const lastColumn = Math.min(Math.max(sheet.getLastColumn(), 1), 13);
+  const header = sheet.getRange(1, 1, 1, lastColumn).getDisplayValues()[0];
+  const h = headerMap_(header);
+  const rowNumber = knownMember && knownMember.rowNumber
+    ? knownMember.rowNumber
+    : members_(book).find(m => m.passport === passport)?.rowNumber;
+  if (!rowNumber) return;
   const name = type === 'login' ? '最近登入日期' : '最近練習日期';
-  if (h[name] !== undefined) sheet.getRange(index + 2, h[name] + 1).setValue(new Date());
+  if (h[name] !== undefined) sheet.getRange(rowNumber, h[name] + 1).setValue(new Date());
 }
 
 function headerMap_(row) { const out={}; row.forEach((v,i)=>{ if(String(v).trim()) out[String(v).trim()]=i; }); return out; }
